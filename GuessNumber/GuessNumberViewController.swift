@@ -21,6 +21,7 @@ class GuessNumberViewController: UIViewController, UITableViewDelegate, UITableV
         self.guessNumberView?.guessHistoryTableView?.dataSource = self
         self.guessNumberView?.guessField?.delegate = self
         self.guessNumberView?.guessBtn?.addTarget(self, action: #selector(self.enterAction), forControlEvents: .TouchUpInside)
+        self.guessNumberView?.switchButton?.addTarget(self, action: #selector(self.switchAiAction), forControlEvents: .ValueChanged)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,37 +62,63 @@ class GuessNumberViewController: UIViewController, UITableViewDelegate, UITableV
             guessResult = newGuessData.guessResult
 
         }
+        let message = "AI猜了" + "\((GuessNumberModel.sharedInstance.guessArray?.count)!)" + "次猜中"
+        let alertController = UIAlertController.init(title: "訊息", message: message, preferredStyle: .Alert)
+        let alertAction = UIAlertAction.init(title: "確定", style: .Default, handler: { (action) in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(alertAction)
         self.guessNumberView?.guessField?.text = ""
         self.guessNumberView?.guessField?.resignFirstResponder()
         self.guessNumberView?.guessHistoryTableView?.reloadData()
+        self.presentViewController(alertController, animated: true, completion: nil)
+
     }
     
     func enterAction() {
         if self.guessNumberView?.guessField?.text?.characters.count == 4 {
-            GuessNumberModel.sharedInstance.correctAnswer = self.guessNumberView?.guessField?.text
-            GuessNumberAI.sharedAI.resetBrain()
-            self.aiGuessAction()
-//            var newGuessData: (guessNumber: String, guessResult: String) = ("", "")
-//            newGuessData.guessNumber = (self.guessNumberView?.guessField?.text)!
-//            newGuessData.guessResult = GuessNumberModel.sharedInstance.checkAnswerWithString(guessString: (self.guessNumberView?.guessField?.text)!)
-//            GuessNumberModel.sharedInstance.guessArray?.append(newGuessData)
-//            self.guessNumberView?.guessHistoryTableView?.reloadData()
-//            self.guessNumberView?.guessField?.text = ""
-//            self.guessNumberView?.guessField?.resignFirstResponder()
-//            if newGuessData.guessResult == "4A0B" {
-//                let alertController = UIAlertController.init(title: "訊息", message: "已猜中", preferredStyle: .Alert)
-//                let alertAction = UIAlertAction.init(title: "確定", style: .Default, handler: { (action) in
-//                    GuessNumberModel.sharedInstance.resetData()
-//                    self.guessNumberView?.guessHistoryTableView?.reloadData()
-//                    alertController.dismissViewControllerAnimated(true, completion: nil)
-//                })
-//                alertController.addAction(alertAction)
-//                self.presentViewController(alertController, animated: true, completion: nil)
-//            }
+            if self.guessNumberView?.switchButton?.on == true {
+                GuessNumberModel.sharedInstance.resetData()
+                GuessNumberModel.sharedInstance.correctAnswer = self.guessNumberView?.guessField?.text
+                GuessNumberAI.sharedAI.resetBrain()
+                self.aiGuessAction()
+            } else {
+                var newGuessData: (guessNumber: String, guessResult: String) = ("", "")
+                newGuessData.guessNumber = (self.guessNumberView?.guessField?.text)!
+                newGuessData.guessResult = GuessNumberModel.sharedInstance.checkAnswerWithString(guessString: (self.guessNumberView?.guessField?.text)!)
+                GuessNumberModel.sharedInstance.guessArray?.append(newGuessData)
+                self.guessNumberView?.guessHistoryTableView?.reloadData()
+                self.guessNumberView?.guessField?.text = ""
+                self.guessNumberView?.guessField?.resignFirstResponder()
+                if newGuessData.guessResult == "4A0B" {
+                    let alertController = UIAlertController.init(title: "訊息", message: "已猜中", preferredStyle: .Alert)
+                    let alertAction = UIAlertAction.init(title: "確定", style: .Default, handler: { (action) in
+                        GuessNumberModel.sharedInstance.resetData()
+                        self.guessNumberView?.guessHistoryTableView?.reloadData()
+                        alertController.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                    alertController.addAction(alertAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+
+            }
         } else {
             
         }
         
+    }
+    
+    func switchAiAction() {
+        self.guessNumberView?.guessField?.text = ""
+        self.guessNumberView?.guessField?.resignFirstResponder()
+        GuessNumberModel.sharedInstance.resetData()
+        GuessNumberAI.sharedAI.resetBrain()
+        self.guessNumberView?.guessHistoryTableView?.reloadData()
+        if self.guessNumberView?.switchButton?.on == true {
+            self.guessNumberView?.guessField?.placeholder = "請輸入要AI猜的數字"
+        } else {
+            self.guessNumberView?.guessField?.placeholder = "猜四位數字"
+        }
     }
     
     override func didReceiveMemoryWarning() {

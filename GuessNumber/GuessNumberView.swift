@@ -16,6 +16,8 @@ class GuessNumberView: UIView {
     
     var guessBtn: UIButton?
     
+    var switchButton: UISwitch?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
@@ -25,7 +27,7 @@ class GuessNumberView: UIView {
         self.guessField = UITextField.init(frame: CGRectMake(CGRectGetMidX(self.frame) - 140, 40, 200, 50))
         self.guessField?.keyboardType = .PhonePad
         self.guessField?.textAlignment = .Center
-        self.guessField?.placeholder = "輸入四位數字"
+        self.guessField?.placeholder = "猜四位數字"
         self.guessField?.layer.borderWidth = 1.0
         self.guessField?.layer.cornerRadius = 5.0
         self.addSubview(self.guessField!)
@@ -36,6 +38,10 @@ class GuessNumberView: UIView {
         self.guessBtn?.alpha = 0.7
         self.guessBtn?.layer.cornerRadius = 5.0
         self.addSubview(self.guessBtn!)
+        
+        self.switchButton = UISwitch.init(frame: CGRectMake(5, CGRectGetMinY(self.guessField!.frame), 50, 50))
+        self.addSubview(self.switchButton!)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
