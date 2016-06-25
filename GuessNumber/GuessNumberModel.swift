@@ -14,7 +14,8 @@ class GuessNumberModel: NSObject {
     
     var guessArray: Array<(guessNumber: String, guessResult: String)>?
     
-    private var correctAnswer: String?
+//    private var correctAnswer: String?
+    var correctAnswer: String?
     
     override init() {
         super.init()

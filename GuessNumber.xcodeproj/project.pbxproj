@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3982A74F1D1ED0D50091D1CD /* GuessNumberAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3982A74E1D1ED0D50091D1CD /* GuessNumberAI.swift */; };
 		398CAD5D1D1D28C7003DD4AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398CAD5C1D1D28C7003DD4AE /* AppDelegate.swift */; };
 		398CAD641D1D28C7003DD4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398CAD631D1D28C7003DD4AE /* Assets.xcassets */; };
 		398CAD671D1D28C7003DD4AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398CAD651D1D28C7003DD4AE /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3982A74E1D1ED0D50091D1CD /* GuessNumberAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberAI.swift; sourceTree = "<group>"; };
 		398CAD591D1D28C7003DD4AE /* GuessNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398CAD5C1D1D28C7003DD4AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		398CAD631D1D28C7003DD4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				398CAD8A1D1D2905003DD4AE /* GuessNumberViewController.swift */,
 				398CAD8C1D1D295A003DD4AE /* GuessNumberView.swift */,
 				398CAD8E1D1D3203003DD4AE /* GuessNumberModel.swift */,
+				3982A74E1D1ED0D50091D1CD /* GuessNumberAI.swift */,
 			);
 			path = GuessNumber;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				398CAD5D1D1D28C7003DD4AE /* AppDelegate.swift in Sources */,
+				3982A74F1D1ED0D50091D1CD /* GuessNumberAI.swift in Sources */,
 				398CAD8B1D1D2905003DD4AE /* GuessNumberViewController.swift in Sources */,
 				398CAD8F1D1D3203003DD4AE /* GuessNumberModel.swift in Sources */,
 				398CAD8D1D1D295A003DD4AE /* GuessNumberView.swift in Sources */,
@@ -480,6 +484,7 @@
 				398CAD831D1D28C7003DD4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		398CAD841D1D28C7003DD4AE /* Build configuration list for PBXNativeTarget "GuessNumberTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +493,7 @@
 				398CAD861D1D28C7003DD4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		398CAD871D1D28C7003DD4AE /* Build configuration list for PBXNativeTarget "GuessNumberUITests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +502,7 @@
 				398CAD891D1D28C7003DD4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
